@@ -125,7 +125,9 @@ function Footer() {
             alt="company logo"
             height={180}
             width={180}
+            
           />
+
         </Link>
       </div>
     </footer>
