@@ -12,7 +12,7 @@ function Page() {
   const [stars, setStars] = useState<number | null>(null);
 
   const fetchProducts = useCallback(
-    async ({ pageParam = 1, limit = 4 }) => {
+    async ({ pageParam = 1, limit = 3 }) => {
       const res = await axiosInstance.get("products", {
         params: {
           page: pageParam,

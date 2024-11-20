@@ -6,6 +6,23 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/utils/axiosInstance';
 import { toast } from '@/hooks/use-toast';
 
+
+
+import { opacity } from '@cloudinary/url-gen/actions/adjust';
+import { source } from '@cloudinary/url-gen/actions/overlay';
+import { Position } from '@cloudinary/url-gen/qualifiers';
+import { text } from '@cloudinary/url-gen/qualifiers/source';
+import { TextStyle } from '@cloudinary/url-gen/qualifiers/textStyle';
+import { compass } from '@cloudinary/url-gen/qualifiers/gravity';
+import { Cloudinary, Transformation } from '@cloudinary/url-gen';
+
+const cld  = new Cloudinary({
+  cloud:{
+   cloudName:"dnugszkww"  
+  }
+})
+
+
 interface ProductProps {
   image: string;
   title: string;
@@ -62,11 +79,28 @@ const Product: React.FC<ProductProps> = ({ id, image, title, rating, reviewCount
     mutation.mutate(id);
   };
 
+  const urlArr = image.split("/")
+  const publicIdWithFormat = urlArr[urlArr.length-1]
+  const publicIdWithFormatArr = publicIdWithFormat.split(".")
+  const publicId =  publicIdWithFormatArr[0]
+  const myImage = cld.image(publicId) 
+  myImage
+  .overlay(
+    source(
+      text('HawaaK', new TextStyle('arial', 200))
+        .textColor('white')
+        .transformation(new Transformation().adjust(opacity(60)))
+    ).position(new Position().gravity(compass('center')).offsetY(20))
+  )
+  .format('png');
+
+  const myUrl = myImage.toURL();
+
   return (
     <div className={`bg-white rounded-lg shadow-md ${className} w-[250px]  h-fit xl:w-full`} >
       <div className="relative mb-4 overflow-hidden h-[400px] lg:h-[50vh] xl:h-[55vh]">
         <Link href={`/shop/${id}`}>
-        <Image src={image} alt={title} width={200} height={200} className="w-full h-full rounded-t-lg" />
+        <Image src={myUrl} alt={title} width={200} height={200} className="w-full h-full rounded-t-lg" />
         </Link>
       </div >
       <div style={{direction:"ltr"}} className='p-4'>

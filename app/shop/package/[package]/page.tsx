@@ -19,6 +19,23 @@ import SingleProductSkeleton from "../../component/SingleProductSkeleton";
 import ProductSkelton from "@/app/(components)/ProductSkelton";
 import SinglePackges from "../SinglePackges";
 
+
+
+import { opacity } from '@cloudinary/url-gen/actions/adjust';
+import { source } from '@cloudinary/url-gen/actions/overlay';
+import { Position } from '@cloudinary/url-gen/qualifiers';
+import { text } from '@cloudinary/url-gen/qualifiers/source';
+import { TextStyle } from '@cloudinary/url-gen/qualifiers/textStyle';
+import { compass } from '@cloudinary/url-gen/qualifiers/gravity';
+import { Cloudinary, Transformation } from '@cloudinary/url-gen';
+
+
+const cld  = new Cloudinary({
+  cloud:{
+   cloudName:"dnugszkww"  
+  }
+})
+
 const addToCartMutation = async (productId: string) => {
   const response = await axiosInstance.post(`cart/add-package/${productId}`, {
     quantity: 1,
@@ -214,19 +231,38 @@ export default function ProductPage({
             className="w-full  h-[450px] sm:h-[650px]   lg:h-[650px] rounded-lg"
           >
             {packageData.data.Package.images.map(
-              (image: any, index: number) => (
-                <SwiperSlide key={index}>
+              (image: any, index: number) => {
+
+                const urlArr = image.split("/")
+                const publicIdWithFormat = urlArr[urlArr.length-1]
+                const publicIdWithFormatArr = publicIdWithFormat.split(".")
+                const publicId =  publicIdWithFormatArr[0]
+                const myImage = cld.image(publicId) 
+                myImage
+                .overlay(
+                  source(
+                    text('HawaaK', new TextStyle('arial', 200))
+                      .textColor('white')
+                      .transformation(new Transformation().adjust(opacity(60)))
+                  ).position(new Position().gravity(compass('center')).offsetY(20))
+                )
+                .format('png');
+
+                const myUrl = myImage.toURL();
+              
+
+                return <SwiperSlide key={index}>
                   <div className="relative w-full h-full ">
                     <Image
-                      src={image}
+                      src={myUrl}
                       alt={`Product image ${index}`}
                       layout="fill"
                       className="h-full w-full"
-                      onClick={() => setFullScreenImage(image)}
+                      onClick={() => setFullScreenImage(myUrl)}
                     />
                   </div>
                 </SwiperSlide>
-              )
+              }
             )}
           </Swiper>
         </div>

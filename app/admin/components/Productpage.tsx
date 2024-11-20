@@ -1,5 +1,5 @@
 "use client";
-
+import { Cloudinary, Transformation } from '@cloudinary/url-gen';
 import React, { useState, useRef, useEffect } from "react";
 import { Plus, Trash, X, Edit, Loader2 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,6 +8,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { opacity } from '@cloudinary/url-gen/actions/adjust';
+import { source } from '@cloudinary/url-gen/actions/overlay';
+import { Position } from '@cloudinary/url-gen/qualifiers';
+import { text } from '@cloudinary/url-gen/qualifiers/source';
+import { TextStyle } from '@cloudinary/url-gen/qualifiers/textStyle';
+import { compass } from '@cloudinary/url-gen/qualifiers/gravity';
 import {
   Table,
   TableHeader,
@@ -30,6 +36,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+
 
 type Product = {
   _id: string;
@@ -71,6 +78,17 @@ function Productpage() {
     packageId: "undefined",
     packageName: "",
   });
+
+
+  const cld  = new Cloudinary({
+    cloud:{
+     cloudName:"dnugszkww"  
+    }
+  })
+
+
+
+
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -237,6 +255,22 @@ function Productpage() {
   };
 
   const handleUploadSuccess = (result: any) => {
+
+    const myImage = cld.image(result.info.public_id) 
+
+
+    myImage
+    .overlay(
+      source(
+        text('This is my picture', new TextStyle('arial', 200))
+          .textColor('white')
+          .transformation(new Transformation().adjust(opacity(60)))
+      ).position(new Position().gravity(compass('center')).offsetY(20))
+    )
+    .format('png');
+    const myUrl = myImage.toURL();
+    console.log(myUrl)
+
     setFormData((prev) => ({
       ...prev,
       images: [...(prev.images || []), result.info.secure_url],

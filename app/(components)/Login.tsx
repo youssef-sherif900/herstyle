@@ -40,6 +40,7 @@ type ForgotPasswordFormData = {
 const loginUser = async (data: LoginFormData) => {
   try {
     const response = await axiosInstance.post('/users/login', data);
+    console.log(data)
     return response.data;
   } catch (error) {
     throw error;
