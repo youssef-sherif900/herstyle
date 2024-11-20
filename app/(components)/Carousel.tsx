@@ -30,7 +30,7 @@ function Carousel() {
               alt="Image Slider"
               width={1200}
               height={400}
-              className="w-full rounded-lg lg:h-full h-[30vh] sm:h-60 bg-cover"
+              className="w-full rounded-lg lg:h-full h-[25vh] sm:h-60 bg-cover"
             />
           </Link>
         </SwiperSlide>
@@ -41,7 +41,7 @@ function Carousel() {
             alt="Image Slider 2"
             width={1200}
             height={400}
-            className="w-full rounded-lg lg:h-full h-[30vh] sm:h-60 bg-cover"
+            className="w-full rounded-lg lg:h-full h-[25vh] sm:h-60 bg-cover"
           />
           </Link>
         </SwiperSlide>
@@ -52,7 +52,7 @@ function Carousel() {
               alt="Image Slider 3"
               width={1200}
               height={400}
-              className="w-full rounded-lg lg:h-full h-[30vh] sm:h-60 bg-cover"
+              className="w-full rounded-lg lg:h-full h-[25vh] sm:h-60 bg-cover"
             />
           </Link>
         </SwiperSlide>
@@ -64,7 +64,7 @@ function Carousel() {
             width={1200}
             height={400}
             
-            className="w-full rounded-lg lg:h-full h-[30vh] sm:h-60  bg-cover"
+            className="w-full rounded-lg lg:h-full h-[25vh] sm:h-60  bg-cover"
           />
           </Link>
         </SwiperSlide>
@@ -75,7 +75,7 @@ function Carousel() {
             alt="Image Slider 3"
             width={1200}
             height={400}
-            className="w-full rounded-lg lg:h-full h-[30vh] sm:h-60 bg-cover"
+            className="w-full rounded-lg lg:h-full h-[25vh] sm:h-60 bg-cover"
           />
           </Link>
         </SwiperSlide>
