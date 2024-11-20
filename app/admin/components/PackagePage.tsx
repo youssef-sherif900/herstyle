@@ -34,6 +34,9 @@ import {
 } from "@/components/ui/alert-dialog"
 import { useToast } from '@/hooks/use-toast'
 import { Textarea } from '@/components/ui/textarea'
+import { ScrollArea } from '@radix-ui/react-scroll-area';
+
+
 
 type Package = {
   _id: string;
@@ -363,6 +366,7 @@ function PackagePage() {
             ) : error ? (
               <p>Error loading data</p>
             ) : (
+              <ScrollArea className='h-[400px] overflow-y-scroll scroll'>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -410,6 +414,7 @@ function PackagePage() {
                   ))}
                 </TableBody>
               </Table>
+              </ScrollArea>
             )}
           </div>
         </div>

@@ -78,4 +78,11 @@ html{
   -webkit-font-smoothing: antialiased;
 }
 
+.scroll{
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */ 
+  overflow-x:hidden;
+  -webkit-font-smoothing: antialiased; 
+}
+
 

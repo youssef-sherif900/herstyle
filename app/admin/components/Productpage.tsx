@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 
 type Product = {
@@ -612,6 +613,7 @@ function Productpage() {
             ) : productsError ? (
               <p>حدث خطأ أثناء تحميل البيانات</p>
             ) : (
+              <ScrollArea className='h-[400px] overflow-y-scroll scroll'>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -622,7 +624,7 @@ function Productpage() {
                     <TableHead className="text-right">الإجراءات</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody >
                   {products?.map((product) => (
                     <TableRow key={product._id}>
                       <TableCell className="flex items-center justify-end">
@@ -659,6 +661,7 @@ function Productpage() {
                   ))}
                 </TableBody>
               </Table>
+              </ScrollArea>
             )}
           </div>
         </div>
