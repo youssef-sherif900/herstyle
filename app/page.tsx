@@ -59,7 +59,7 @@ export default function Home() {
   });
 
   return (
-    <main className="container mx-auto p-8  px-4 lg:px-24">
+    <main className="container mx-auto pt-3 md:p-8  px-4 lg:px-24">
       {/* Hero Banner */}
       <Carousel />
       {/* Promotion Banner */}
