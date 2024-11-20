@@ -209,7 +209,7 @@ export default function Header() {
         </Link>
       </header>
       {/* Navigation */}
-      <nav className="w-full flex items-center bg-purple text-white text-xs lg:text-base text-center lg:px-24 p-4">
+      <nav className="w-full flex items-center bg-purple text-white text-xs lg:text-base text-center lg:px-24 py-1 p-4">
         <Login />
         <div className="hidden lg:flex ml-auto lg:mr-[33%] 2xl:mr-[40%] justify-center space-x-6">
           <Link href="/about">من نحن</Link>
