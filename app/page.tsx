@@ -71,8 +71,10 @@ export default function Home() {
           height={100}
           width={100}
         />
-        <button className=" lg:ml-24 ml-12 relative z-10 text-black px-4 py-2   rounded-xl  transition duration-300">
-          اذا لم يناسبك <br /> استرد قيمة طلبك
+        <button dir="rtl" className=" lg:left-80 md:left-60 left-24 relative z-10 text-gray-700 font-bold  py-2 flex-col   rounded-xl  transition duration-300">
+       <p className="flex items-center">عملاء بنكك...  <Image src='/bankak.jpg' alt="bankak" height={45} width={45} /> </p>
+       <p className="text-xs">أطلب طلبك ورسل الإيصال تلقي طلبك جنب الباب</p>   
+
         </button>
 
         <div className="flex items-center absolute right-0">

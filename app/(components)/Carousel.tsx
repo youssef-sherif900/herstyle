@@ -9,7 +9,7 @@ import Link from "next/link";
 
 function Carousel() {
   return (
-    <div className="mb-8">
+    <div className="mb-2">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
