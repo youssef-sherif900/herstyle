@@ -71,9 +71,9 @@ export default function Home() {
           height={100}
           width={100}
         />
-        <button dir="rtl" className=" lg:left-80 md:left-60 left-24 relative z-10 text-gray-700 font-bold  py-2 flex-col">
-       <p className="flex items-center">عملاء ...  <Image src='/bankak.jpg' alt="bankak" height={45} width={45} /> </p>
-       <p className="text-xs">أطلب طلبك ورسل الإيصال </p>   
+        <button dir="rtl" className=" lg:left-80 md:left-60 sm:left-[25%] left-[14%] relative z-10 text-gray-700 font-bold  py-2 flex-col">
+       <p className="flex items-center">عملاء .  <Image src='/bankak.jpg' alt="bankak" height={45} width={45} /> </p>
+       <p className="text-xs">أطلب طلبك ورسل الإيصال... </p>   
 
         </button>
 
