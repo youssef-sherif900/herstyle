@@ -31,14 +31,6 @@ import { Cloudinary, Transformation } from '@cloudinary/url-gen';
 import "swiper/css";
 import "swiper/css/pagination";
 
-
-const cld  = new Cloudinary({
-  cloud:{
-   cloudName:"dnugszkww"  
-  }
-})
-
-
 const addToCartMutation = async (productId: string) => {
   const response = await axiosInstance.post(`cart/add-product/${productId}`, {
     quantity: 1,
@@ -210,33 +202,14 @@ export default function ProductPage({
             {productData.data.product.images.map(
               (image: string, index: number) => {
 
-                const urlArr = image.split("/")
-                const publicIdWithFormat = urlArr[urlArr.length-1]
-                const publicIdWithFormatArr = publicIdWithFormat.split(".")
-                const publicId =  publicIdWithFormatArr[0]
-
-                  const myImage = cld.image(publicId) 
-                  myImage
-                  .overlay(
-                    source(
-                      text('HawaaK', new TextStyle('arial', 200))
-                        .textColor('white')
-                        .transformation(new Transformation().adjust(opacity(60)))
-                    ).position(new Position().gravity(compass('center')).offsetY(20))
-                  )
-                  .format('png');
-
-                  const myUrl = myImage.toURL();
-              
-
                 return <SwiperSlide key={index}>
                   <div className="relative w-full h-full">
                     <Image
-                      src={myUrl}
+                      src={image}
                       alt={`Product image ${index}`}
                       layout="fill"
                       className="w-full h-full cursor-pointer"
-                      onClick={() => setFullScreenImage(myUrl)}
+                      onClick={() => setFullScreenImage(image)}
                     />
                   </div>
                 </SwiperSlide>
